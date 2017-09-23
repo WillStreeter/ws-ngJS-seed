@@ -1,0 +1,30 @@
+<div flex md-whiteframe="4" class="filter-panel" ng-style="{width: $ctrl.panelWidth + 'px'}">
+    <div layout="row">
+      <md-list flex>
+        <md-list-item ng-repeat="item in [5,4,3,2,1]">
+          <p>Greater than {{item}} stars</p>
+          <md-checkbox
+          ng-model="$ctrl.filterModel.rating" 
+          ng-true-value="{{item}}"
+          ng-false-value="null">
+          </md-checkbox>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item>
+          <p>Favorites only</p>
+          <md-checkbox
+          ng-false-value="null"
+          ng-model="$ctrl.filterModel.favorites">
+          </md-checkbox>
+        </md-list-item>       
+      </md-list>
+      <md-button ng-click="$ctrl.closeFilterPanel()" class="md-icon-button md-accent md-ink-ripple">
+        <md-icon md-font-set="material-icons">close</md-icon>
+      </md-button>
+    </div>
+
+    <div layout="row" layout-align="end center" class="filter-action-row">
+      <md-button ng-click="$ctrl.reset()">Reset</md-button>
+      <md-button ng-click="$ctrl.submit()" class="md-raised md-primary">Search</md-button>
+    </div>   
+</div>

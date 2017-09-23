@@ -1,0 +1,15 @@
+<div layout="row" flex layout-align="center" class="customer-hotels">
+  <hotel-list layout="column" flex-gt-md="30" flex-gt-xs="45" flex 
+    on-select="$ctrl.showDetails($event)"
+    infinite-scroll-disabled="!$ctrl.isHotelsListVisible"
+    ng-show="$ctrl.isHotelsListVisible">
+  </hotel-list>
+
+  <div flex-gt-md="40" flex-gt-xs="55" flex ng-if="$ctrl.isHotelDetailsVisible">
+    <div ui-view ng-if="!('customer.hotels' | isState)" class="details_card md-whiteframe-2dp"></div>
+    <div ng-if="'customer.hotels' | isState" class="placeholder">
+      Please select hotel from the list to see its detailed info.
+    </div>   
+
+  </div>
+</div>
