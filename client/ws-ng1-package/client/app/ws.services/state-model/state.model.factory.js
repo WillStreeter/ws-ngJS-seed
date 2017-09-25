@@ -3,12 +3,12 @@
  */
 
 class StateModelFactory {
-	   constructor(Rx, UserStateModelService, PubSub) {
+	   constructor(rx, UserStateModelService, PubSub) {
                 'ngInject';
-         this.rxService   =  Rx;
+         this.rxService   =  rx;
          this.userStateModelService = UserStateModelService;
 
-         this.userStateModel =  Rx.Observable.ofObjectChanges(userStateModelService.getUserStateModel());
+         this.userStateModel =  this.rxService.Observable.ofObjectChanges(userStateModelService.getUserStateModel());
 
         PubSub.subscribe(PubSub.pubsubType().apiRemoteUserService, this.getUserStateModel, true, 1);
 

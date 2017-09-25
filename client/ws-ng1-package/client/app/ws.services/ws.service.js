@@ -4,7 +4,7 @@ import wsUserApi from './api-model/ws.user.api';
 import httpAjaxRequestWrapper from './api-model/http.ajax.request.wrapper';
 
 let WsService = angular
-	.module('ws.service', ['rx', 'ws.utility'])
+	.module('ws.service', ['ws.pubsub'])
 	.service('StateModelFactory', stateModelFactory)
 	.service('UserStateModelService', userStateModel)
 	.service('WsUserApi', wsUserApi)

@@ -8,7 +8,7 @@ import components from './components/components';
 import appComponent from './app.component';
 import appConstants from './app.constants';
 import services from './services/services';
-import PubSub from './ws.pubsub/ws.pubsub.module'
+import wsPubSub from './ws.pubsub/ws.pubsub.module'
 import wsServices from './ws.services/ws.service'
 
 
@@ -17,8 +17,8 @@ angular.module('app', [
   common,
   components,
   services,
-  PubSub,
-  wsServices,
+  wsPubSub,
+  wsServices
 ])
   .config(($locationProvider, $urlRouterProvider) => {
     "ngInject";
@@ -29,11 +29,11 @@ angular.module('app', [
     $locationProvider.html5Mode(true).hashPrefix('!');
 
     // redirect user to corresponded 'home' page in case invalid url
-    // $urlRouterProvider.otherwise(($injector) => {
-    //   let userType = $injector.get('AuthService').userType;
-    //   console.log('app ---  userType ='+userType)
-    //   return userType ? '/' + userType : '/auth/login';
-    // });
+    $urlRouterProvider.otherwise(($injector) => {
+      let userType = $injector.get('AuthService').userType;
+      console.log('app ---  userType ='+userType)
+      return userType ? '/' + userType : '/auth/login';
+    });
 
   })
   // .run(function($uiRouter) {

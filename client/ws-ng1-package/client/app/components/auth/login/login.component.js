@@ -7,12 +7,13 @@ const loginComponent = {
     customers: '<'
   },
   controller: class LoginComponent {
-    constructor($state, AuthService) {
+    constructor($state, AuthService, PubSubProvider) {
       'ngInject';
 
       this.name = 'login';
       this.$state = $state;
       this.authService = AuthService;
+      this.pubSub = PubSubProvider;
     }
 
     login(event) {
@@ -20,7 +21,7 @@ const loginComponent = {
     }
 
     createUser(account_type) {
-      console.log('[LoginComponent.js]--- createUser - account_type =',account_type )
+      console.log('[LoginComponent.js]--- createUser - PubSub=',this.pubSub )
       this.$state.go('auth.register', { accountType: account_type });
     }
   }

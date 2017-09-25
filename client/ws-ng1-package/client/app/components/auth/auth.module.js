@@ -7,6 +7,7 @@ import { httpInterceptor } from './auth.hooks';
 import { authHookRunBlock } from './auth.hooks';
 import { errorHookRunBlock } from './auth.hooks';
 import { permissionHookRunBlock } from './auth.hooks';
+import wsPubSub from '../../ws.pubsub/ws.pubsub.module'
 
 
 const auth = angular
@@ -14,7 +15,8 @@ const auth = angular
     login,
     loginForm,
     register,
-    registerForm
+    registerForm,
+    wsPubSub
   ])
   .config(($stateProvider, $urlRouterProvider, $httpProvider) => {
     "ngInject";

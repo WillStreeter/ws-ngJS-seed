@@ -1,5 +1,5 @@
 {
-  "name": "ws-ng1-client",
+  "name": "ws-ng1-package",
   "version": "0.0.1",
   "description": "WS starter for AngularJS v1.6",
   "main": "index.js",

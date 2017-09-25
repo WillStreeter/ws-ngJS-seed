@@ -1,8 +1,9 @@
+import pubSubProvider from './pubsub.provider';
 
-
-let PubSub =   angular
+let WsPubSub =   angular
   .module('ws.pubsub', [])
+  .provider('PubSubProvider', pubSubProvider)
   .name;
 
 
-export default PubSub;
+export default WsPubSub;
