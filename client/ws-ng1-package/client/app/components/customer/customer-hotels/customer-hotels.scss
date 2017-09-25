@@ -1,0 +1,53 @@
+$mobile: "(max-width: 599px)";
+$tablet1: "(min-width: 600px) and (max-width: 829px)";
+$tablet2: "(min-width: 830px) and (max-width: 959px)";
+$desktop: "(min-width: 960px)";
+
+customer-hotels {
+  height: 100%;
+}
+
+.customer-hotels {
+  height: 100%;
+}
+
+.details_card {
+  z-index : 2;
+  position: relative;
+  height:100%;
+  margin: 0px 16px 16px 16px;
+}
+
+@media #{$mobile} {
+  .details_card {
+    margin: 0px;
+  }
+}
+
+@media #{$tablet1} {
+  .details_card {
+    max-height: calc(100% + 48px) !important;
+    height: calc(100% + 48px) !important;
+    top: -56px;
+  }
+}
+
+@media #{$tablet2} {
+  .details_card {
+    max-height: calc(100% + 32px) !important;
+    height: calc(100% + 32px) !important;
+    top: -48px;
+  }
+}
+
+@media #{$desktop} {
+  .details_card {
+    height: calc(100% + 48px) !important;
+    max-height: calc(100% + 48px) !important;
+    top: -64px;
+  }
+}
+
+#loading-bar .bar {
+  position: relative;
+}
