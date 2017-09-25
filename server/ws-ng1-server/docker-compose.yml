@@ -1,14 +1,6 @@
+version: '2'
 
-
-
-
-
-
-
-
-
-
-
+services:
   express-mongoose-es6-rest-api:
     build:
       context: .
