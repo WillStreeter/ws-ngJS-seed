@@ -6,6 +6,7 @@ class PubSubProvider {
 
             this.defaultTypes = {
                 'apiRemoteUserService':'apiRemoteUserService',
+                'apiRemoteUserServicesResponse':'apiRemoteUserServicesResponse',
                 'apiLocalRequest':'apiLocalRequest'
             }
           }
@@ -23,9 +24,9 @@ class PubSubProvider {
 
 
          $get() {
-              this.self = this;
-              this.channels = {};
-              this.id = 0;
+              let self = this;
+              let channels = {};
+              let id = 0;
 
               /**
                * Subscribes a callback to a channel.
@@ -37,7 +38,7 @@ class PubSubProvider {
                *                               channel.
                */
               const addSubscriber = (channel, callback)=>{
-                  const subscriberId = this.getUniqueId();
+                  const subscriberId = getUniqueId();
 
                   channel[subscriberId] = callback;
 
@@ -53,11 +54,11 @@ class PubSubProvider {
                * @return {undefined}
                */
               const appendToHistory = (channel, message)=>{
-                  if (self.maxHistory <= 0) { return; }
+                  if (this.maxHistory <= 0) { return; }
 
                   channel.history.push(message);
 
-                  if (channel.history.length > self.maxHistory) {
+                  if (channel.history.length > this.maxHistory) {
                       channel.history.shift();
                   }
               };
@@ -140,12 +141,12 @@ class PubSubProvider {
                * @param  {[...]}     message Zero or more values to pass as a message.
                * @return {undefined}
                */
-              const publish = (channel)=> {
-                  let args = this.dropFromArguments(arguments, 1);
-                  channel = this.getOrCreateChannel(channel);
+               function publish(channel){
+                  let args = dropFromArguments(arguments, 1);
+                  channel = getOrCreateChannel(channel);
 
-                  this.publishOn(channel, args);
-                  this.appendToHistory(channel, args);
+                  publishOn(channel, args);
+                  appendToHistory(channel, args);
               };
 
               /**
@@ -214,7 +215,7 @@ class PubSubProvider {
 
 
               const pubsubType = ()=>{
-                      return self.defaultTypes;
+                      return this.defaultTypes;
               };
 
 
@@ -223,7 +224,7 @@ class PubSubProvider {
 
 
 
-                  pubsubType:() => this.pubsubType,
+                  pubsubType:pubsubType,
 
                     /**
                      * @ngdoc method
@@ -235,7 +236,7 @@ class PubSubProvider {
                      *        message Zero or more values to pass as a message.
                      * @return {undefined}
                      */
-                  publish:() => this.publish,
+                  publish:publish,
                     /**
                      * @ngdoc method
                      * @name subscribe
@@ -251,7 +252,7 @@ class PubSubProvider {
                      * @return {Function}             A callback for unsubscribing from the
                      *                                  channel.
                      */
-                  subscribe:() => this.subscribe
+                  subscribe:subscribe
               };
 
     }

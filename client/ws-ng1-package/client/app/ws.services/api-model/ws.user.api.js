@@ -2,6 +2,7 @@
 
 	constructor(HttpAjaxRequestWrapper) {
 		'ngInject';
+
 		this.httpAjaxRequestWrapper = HttpAjaxRequestWrapper;
 	}
 

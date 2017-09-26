@@ -1,17 +1,24 @@
 
+
+
+
 class UserStateModelService{
 
       constructor(WsUserApi) {
 		'ngInject';
 
           this.wsUserApi = WsUserApi;
-          this.userModel = null;
+          this.userModel = Object.assign({}, { loggedIn:false,
+                                               userName:'',
+                                               occupation:''} );
       }
 
 
       getAuthUser(){
              //WsUserApi.getLoggedInUser().then(function (res) {
-              this.userModel = Object.assign({}, {userName:'Freddy Hubbard', occupation:'Jazz Musician'} )
+              this.userModel = Object.assign({}, { loggedIn:true,
+                                                    userName:'Freddy Hubbard',
+                                                    occupation:'Jazz Musician'} )
             //}
 
       };

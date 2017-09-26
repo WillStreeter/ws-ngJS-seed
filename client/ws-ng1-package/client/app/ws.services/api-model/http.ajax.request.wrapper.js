@@ -1,11 +1,11 @@
 
 class HttpAjaxRequestWrapper {
-	   constructor($http, $q, ServiceConstants) {
+	   constructor($http, $q) {
                 'ngInject';
 
                 this.$http = $http;
                 this.$q = $q;
-                this.serviceConstants = ServiceConstants;
+             //   this.serviceConstants = ServiceConstants;
 
                 this.errorHandler = (error) => {
                     return this.$q.reject(error);
@@ -16,7 +16,8 @@ class HttpAjaxRequestWrapper {
 
        get(params){
             let request = {};
-            request.url = `${this.serviceConstants.server_url}/${params.route}`;
+            //request.url = `${this.serviceConstants.server_url}/${params.route}`;
+            request.url = `/${params.route}`;
             request.method = 'GET';
             request.data = params.data;
             request.headers = { 'Content-Type': 'application/json' };
