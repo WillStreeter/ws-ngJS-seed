@@ -8,7 +8,6 @@ const loginComponent = {
   },
   controller: class LoginComponent {
 
-     ;
      constructor($state, AuthService, PubSubProvider) {
       'ngInject';
 
@@ -19,15 +18,13 @@ const loginComponent = {
       this.user$ = {};
       this.userMdodel$ =  new Rx.Subject();
       this.Subscription = null;
-      this.apiServiceUpdate;
+
       this.setUp();
 
-
-        this.userMdodelSub$ = this.userMdodel$.subscribe( (value) =>{
-               console.log('[LoginComponent.js]--- apiServiceUpdate -   self.user$=',   value )
-               this.user$ = value;
-       });
-
+      this.userMdodelSub$ = this.userMdodel$.subscribe( (value) =>{
+           console.log('[LoginComponent.js]--- apiServiceUpdate -   self.user$=',   value )
+           this.user$ = value;
+      });
 
     }
 
@@ -36,16 +33,13 @@ const loginComponent = {
 
     setUp(){
        let self = this;
-       this.apiServiceUpdate = function(data){
+       const apiServiceUpdate = function(data){
              self.userMdodel$ = data;
-       }
+       };
 
-       this.pubSub.subscribe(this.pubSub.pubsubType().apiRemoteUserServicesResponse, this.apiServiceUpdate, true, 1);
+       this.pubSub.subscribe(this.pubSub.pubsubType().apiRemoteUserServicesResponse, apiServiceUpdate, false, 1);
 
-       let dataApiObjects = Object.assign({}, {
-                                          route : 'user',
-                                          params:{ }
-                                        });
+       let dataApiObjects = Object.assign({}, { route : 'user', params:{ } });
        this.dispatch(dataApiObjects);
     }
 

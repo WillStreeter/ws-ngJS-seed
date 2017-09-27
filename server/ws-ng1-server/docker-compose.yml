@@ -24,15 +24,8 @@ services:
 
     # Overwrite any env var defined in .env file (if required)
     environment:
-      - MONGO_HOST=mongodb://mongo/express-mongoose-es6-rest-api-development
       - DEBUG=express-mongoose-es6-rest-api:*
 
     # Link to containers in another service.
     # Links also express dependency between services in the same way as depends_on,
     # so they determine the order of service startup.
-    links:
-      - mongo
-  mongo:
-    image: "mongo:3.4.2"
-    ports:
-      - "27017:27017"
