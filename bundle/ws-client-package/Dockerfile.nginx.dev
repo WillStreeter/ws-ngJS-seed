@@ -1,0 +1,15 @@
+FROM willsonic/ws-nginx-alpine:v0.0.1
+
+ENV UI_CLIENT_PORT 80
+
+EXPOSE $UI_CLIENT_PORT
+
+RUN mkdir -p /tmp/nginx/client-body \
+    &&  mkdir -p /etc/nginx \
+    &&  mkdir -p /app \
+    &&  mkdir -p /app/prod
+
+COPY  ./etc/nginx /etc/nginx
+COPY  ./dist /app/prod
+
+RUN mkdir -p /var/cache/nginx/api
